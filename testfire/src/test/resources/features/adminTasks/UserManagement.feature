@@ -8,7 +8,7 @@ Feature: Admin's user actions on demo testfire homepage
 
   Scenario: Add a new user
     Given Admin user logged in to testfire page
-    When Amin creates a new user
+    When he creates a new user
     And he logs out
     Then the new user can log in with the given credentials
     
