@@ -7,13 +7,13 @@ Feature: Admin's user actions on demo testfire homepage
   the password modification test will contain a user creation tests too.
 
   Scenario: Add a new user
-    Given Admin user logged in to testfire page
+    Given Admin user logged in to testfire page as admin
     When he creates a new user
     And he logs out
     Then the new user can log in with the given credentials
     
   Scenario: Admin user logged in to testfire page
-    Given Admin user logged in to testfire page
+    Given Admin user logged in to testfire page as admin
     And he creates a new user
     And the new user can log in with the given credentials
     When Admin changes the password of the new user
@@ -21,7 +21,7 @@ Feature: Admin's user actions on demo testfire homepage
     Then the new user can log in with the new credentials
 
   Scenario: Add account to existing user
-    Given Admin user logged in to testfire page
+    Given Admin user logged in to testfire page as admin
     And he creates a new user
     When Admin chages the account type of the new user
     Then the new user has the new account type

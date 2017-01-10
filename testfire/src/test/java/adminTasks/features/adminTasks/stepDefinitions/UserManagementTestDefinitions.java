@@ -34,11 +34,11 @@ public class UserManagementTestDefinitions {
     // TODO implement the logout task
   }
   
-  @Given("(.*) user logged in to testfire page")
-  public void user_log_in_to_testfire_page(String name) throws Throwable {
-    theActorCalled(name).attemptsTo(
+  @Given("(.*) user logged in to testfire page as (.*)")
+  public void user_log_in_to_testfire_page(String actorName, String userName) throws Throwable {
+    theActorCalled(actorName).attemptsTo(
         Navigate.to(Selection.StartPage),
-        login.with(name));
+        login.with(userName));
   }
   
   @Given("(?:s|)he creates a new user")
