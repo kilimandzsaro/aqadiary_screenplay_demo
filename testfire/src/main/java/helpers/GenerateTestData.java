@@ -1,7 +1,5 @@
 package helpers;
 
-import adminTasks.models.Constants;
-
 public class GenerateTestData {
   
   private GenerateUserCredentials generateUser;

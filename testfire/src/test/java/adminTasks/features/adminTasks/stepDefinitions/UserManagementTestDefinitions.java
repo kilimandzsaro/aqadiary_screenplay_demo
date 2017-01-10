@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import adminTasks.models.Selection;
 import adminTasks.tasks.Login;
 import adminTasks.tasks.Navigate;
+import adminTasks.tasks.ManageUsers;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -43,7 +44,8 @@ public class UserManagementTestDefinitions {
   
   @Given("(?:s|)he creates a new user")
   public void admin_creates_a_new_user() {
-    // TODO implement the "create new user" task
+    theActorInTheSpotlight().attemptsTo(
+        ManageUsers.createNewUser());
   }
   
   @Given("the (.*) user can log in with the (.*) credentials")
