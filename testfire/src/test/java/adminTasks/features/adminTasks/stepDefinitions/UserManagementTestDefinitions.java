@@ -2,18 +2,32 @@ package adminTasks.features.adminTasks.stepDefinitions;
 
 import org.openqa.selenium.WebDriver;
 
+import adminTasks.models.Selection;
+import adminTasks.tasks.Login;
+import adminTasks.tasks.Navigate;
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Steps;
+
+import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class UserManagementTestDefinitions {
 
   Actor anna = Actor.named("Anna");
   
   @Managed private WebDriver herBrowser;
+  @Steps Login login;
+  
+  @Before
+  public void set_the_stage() {OnStage.setTheStage(new OnlineCast());}
   
   @After
   public void logout() {
@@ -21,8 +35,10 @@ public class UserManagementTestDefinitions {
   }
   
   @Given("(.*) user logged in to testfire page")
-  public void user_log_in_to_testfire_page(String user) {
-    // TODO implement the login task
+  public void user_log_in_to_testfire_page(String name) throws Throwable {
+    theActorCalled(name).attemptsTo(
+        Navigate.to(Selection.StartPage),
+        login.with(name));
   }
   
   @Given("(?:s|)he creates a new user")

@@ -3,10 +3,13 @@ package adminTasks.tasks;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 import adminTasks.actions.LoginAction;
+import adminTasks.locators.PageLocators;
 import adminTasks.models.Constants;
 import helpers.GenerateUserCredentials;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Step;
 
 public class Login implements Task {
@@ -33,11 +36,14 @@ public class Login implements Task {
     return this;
   }
   
-  @Override
-  @Step("Login as {0}")
+  @Step("Login as {0} with #user")
   public <T extends Actor> void performAs(T actor) {
-    LoginAction login = new LoginAction();
-    actor.wasAbleTo(login.withUserName(user).withPassword(pw));
+    actor.wasAbleTo(
+        Click.on(PageLocators.LOGIN_LINK),
+        Enter.theValue(user).into(PageLocators.USERNAME),
+        Enter.theValue(pw).into(PageLocators.PASSWORD),
+        Click.on(PageLocators.LOGIN_SUBMIT)
+      );
   }
   
   /** This method (the instrumented part) put our sentences into Serenity
